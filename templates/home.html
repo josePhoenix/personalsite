@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}Joseph Long{% endblock %}
+{% block content %}
+    <figure class="block" id="headshot">
+        <div><!-- Portrait by Jing Jin --></div>
+    </figure>
+    <header id="main" class="block">
+      <hgroup>
+        <h1>Joseph Long</h1>
+        <h2>designer and developer studying <a href="http://physastro.pomona.edu/">astrophysics</a> at <a href="http://pomona.edu/">Pomona College</a></h2>
+      </hgroup>
+    </header>
+    <nav class="block">
+      <ol>
+        <li><a href="#portfolio">portfolio</a></li>
+        <li><a href="#experience">experience</a></li>
+        <li><a href="#social">social</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ol>
+    </nav>
+    <section id="portfolio" class="block">
+      <h2>Portfolio</h2>
+      <ol class="projects">
+        {% for project, info in projects %}
+        <li class="project{{ loop.cycle(' first','','','') }}">
+          <a href="/{{ project }}/">
+            {% if info.thumb %}
+            <img src="/{{ project }}/{{ info.thumb }}" alt="{{ info.title }}">
+            {% else %}
+            <img src="/{{ project }}/thumbs/{{ info.images.0.filename }}" alt="{{ info.images.0.alt }}">
+            {% endif %}
+          </a>
+          <h4><a href="/{{ project }}/">{{ info.title }}</a></h4>
+          <h5>{{ info.client }}</h5>
+        </li><!-- end project -->
+        {% endfor %}
+      </ol>
+    </section>
+    <section id="experience" class="block">
+      <h2>Experience</h2>
+      <ol>
+        {% for position in positions %}
+        <li class="position">
+          <hgroup>
+            <h3>{{ position.organization }}</h3>
+            <date>{{ position.start }} &mdash; {{ position.end }}</date>
+            <h4>{{ position.title }}</h4>
+          </hgroup>
+          <ul>
+            {% for item in position.experience %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+      </ol>
+    </section>
+    <section id="social" class="block">
+      <h2>Social</h2>
+      <ul>
+        <li>
+          <a href="http://www.linkedin.com/in/josephoenix">
+            <img src="css/linkedin.png" alt="My LinkedIn Profile">
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="http://twitter.com/josePhoenix">
+            <img src="css/twitter_alt.png" alt="@josePhoenix on Twitter">
+            @josePhoenix
+          </a>
+        </li>
+        <li>
+          <a href="http://josephoenix.tumblr.com/">
+            <img src="css/tumblr.png" alt="josePhoenix on Tumblr">
+            Tumblr
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/josePhoenix">
+            <img src="css/github.png" alt="josePhoenix on GitHub">
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="http://www.last.fm/user/iKtomi">
+            <img src="css/last.fm.png" alt="iKtomi on Last.fm">
+            Last.fm
+          </a>
+        </li>
+      </ul>
+    </section>
+    <section id="contact" class="block">
+      <h2>Contact</h2>
+      <address id="hcard-Joseph-Long" class="vcard">
+       <a class="url fn" href="http://joseph-long.com/">Joseph Long</a>
+       <a class="email" href="mailto:joseph.long@fairlyawesome.com">joseph.long@fairlyawesome.com</a>
+       <div class="adr">
+        <span class="locality">Claremont</span>, 
+        <span class="region">CA</span>
+        <span class="country-name">USA</span>
+       </div>
+       <div class="tel">(678) 701-7375</div>
+      </address>
+    </section>
+{% endblock %}

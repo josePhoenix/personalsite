@@ -1,0 +1,10 @@
+organization: Carnegie Observatories
+title: Data Analyst for Dr. George Jacoby
+start: May 2012
+end: January 2013
+datestamp: 2012-05-01
+experience:
+  - Learned the ins and outs of analyzing <a href="http://kepler.nasa.gov/">Kepler mission</a> data from scientists at NASA Ames Research Center
+  - Created a pipeline to take space telescope data and examine it for periodic components
+  - Generated packaged phased light curves and plots for collaborators
+  - Documented the pipeline and reduction process for publication and for future contributors

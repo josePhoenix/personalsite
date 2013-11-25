@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} &ndash; Joseph Long{% endblock %}
+{% block content %}
+<hgroup class="block">
+  <h1 id="project-title">{{ title }}</h1>
+  <h2 id="project-clientdate">{{ client }} &mdash; {{ date }}</h2>
+</hgroup>
+<section class="block">
+<aside id="project-gallery">
+  <figure>
+    <img id="large_image" src="{{ images.0.filename }}" alt="{{ images.0.alt }}">
+    <figcaption>{{ images.0.alt }}</figcaption>
+  </figure>
+  <ol>
+    {% for image in images %}
+    <li><a href="full/{{ image.filename }}"><img src="thumbs/{{ image.filename }}"></a></li>
+    {% endfor %}
+  </ol>
+</aside>
+<div id="project-description">
+  {{ description|markdown }}
+</div>
+<div id="back"><a href="/">&larr; go back</a></div>
+</section>
+{% endblock %}

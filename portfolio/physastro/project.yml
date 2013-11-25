@@ -1,0 +1,25 @@
+title: Physics and Astronomy Website
+client: Physics & Astronomy Department, Pomona College
+datestamp: 2012-07-01
+date: Summer 2012
+description: >
+  As an astrophysics student at Pomona College who moonlights as a designer
+  and developer, it was disappointing to see information on physics and 
+  astronomy at Pomona College fragmented across different subdomains and 
+  several different physical servers, each site with a different design.
+  
+  When I heard that the department was planning to update its web presence, I
+  volunteered to lead the project. There was a great deal of consultation with
+  faculty members, students, and staff. The final site had to serve the needs
+  of the Physics and Astronomy Department, and had to work around legacy systems
+  that could not be updated for the sake of a front-end facelift.
+  
+  In the interests of maintenance by non-technical staff, the site is powered
+  by Wordpress. The design is responsive down to mobile, and the theme registers
+  custom post types to display a faculty and staff directory, as well as a 
+  showcase of student research on the homepage.
+images: 
+  - {filename: home.png, alt: "The Physics and Astronomy Homepage"}
+  - {filename: facilities.png, alt: "A typical page, giving an overview of department facilities"}
+  - {filename: people.png, alt: "The faculty directory"}
+  - {filename: mobile.png, alt: "The site is responsive without hiding any functionality"}

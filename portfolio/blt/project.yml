@@ -1,0 +1,18 @@
+title: Bottom Line Theatre Website
+client: Bottom Line Theatre / The Druids
+datestamp: 2011-10-01
+date: Fall 2011
+description: >
+  I felt that the theatre group I was a member of should have a website to
+  match the quality of the productions we do. I volunteered to design a
+  Wordpress theme, partly as an exercise to dip back into PHP. (Though I'd
+  abandoned it long ago in favor of Python for web development, Wordpress was
+  common enough that I could no longer ignore it!)
+  
+  The overlapping layers motif is a nod to raising stage curtains, and the 
+  red color scheme was my attempt at designing something with a warmer color
+  scheme than most things I've done.
+images: 
+  - {filename: home.png, alt: "The Bottom Line Theatre / Druids homepage"}
+  - {filename: fordirectors.png, alt: "A typical page with information for student directors"}
+  - {filename: mobile.png, alt: "The site was designed with mobile and tablet form-factors in mind"}

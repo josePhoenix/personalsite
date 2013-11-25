@@ -1,0 +1,24 @@
+title: ASPC Online Services
+client: Associated Students of Pomona College
+datestamp: 2011-08-30
+date: Fall 2011
+description: >
+  The Associated Students of Pomona College is the student government for
+  Pomona College, and I was hired as a web developer and administrator on the
+  basis of my work on the "Our Pomona" course schedule search.
+  
+  Over the summer, my task was to modernize the ASPC's web presence, which
+  had been through a few iterations and was at that point a basic WordPress
+  site with a default theme.
+  
+  Working closely with student body President Nate Brown, I created a series
+  of mockups and a long-term plan of making the ASPC website a key resource
+  for students, with information on housing, local businesses, events, and more.
+  
+  The first stage of that redesign was creating a Django-based site that 
+  provided Senate news, a searchable database of on-campus rooms, and an 
+  integrated version of the "Our Pomona" course search.
+images: 
+  - {filename: homepage.png, alt: "Screenshot of the ASPC homepage, showing Senate News and sidebar navigation"}
+  - {filename: eatshop.png, alt: "The directory of on-campus eateries, with hours, discounts, and descriptions. The site also has directories for off-campus restaurants and local businesses."}
+  - {filename: coursesearch.png, alt: "The Course Search app allows students to filter the course schedule by various criteria and visualize their schedule as they build it, something that the college portal does not support."}

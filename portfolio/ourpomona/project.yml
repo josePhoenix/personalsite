@@ -1,0 +1,25 @@
+title: Our Pomona
+client: Personal Project
+datestamp: 2010-10-01
+date: Fall 2010
+description: >
+  After expressing my frustration with the Course Search "portal" software in 
+  use at Pomona College as a first-year, a friend of mine challenged me to 
+  create something better. The online portal, branded as "My Pomona", used POST
+  for every request and passed a multi-kilobyte binary blob back and forth on
+  every request. My goal was simply to create a frontend to the course schedule
+  that did not have a half-second overhead on every request, and was compatible
+  with the back button.
+  
+  The two parts of this project were reverse-engineering the ASP/postback based
+  web interface to scrape the course information, and then creating a Django-based
+  web frontend to the resulting data that would give students more choices to filter
+  their course choices than merely by department.
+  
+  The first version had only a search feature, but I also added a visual
+  schedule builder a few days later that would let students see their courses
+  as they chose them.
+images: 
+  - {filename: schedule.png, alt: "The main schedule-builder page, with an integrated search form"}
+  - {filename: search.png, alt: "The first iteration of the app only included the search form, which lived on as a separate view"}
+  - {filename: detail.png, alt: "Clicking on a course title would bring up all of the details of the course available on the college portal"}

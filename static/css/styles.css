@@ -1,0 +1,550 @@
+/* @override http://localhost:8000/css/styles.css */
+
+body {
+	background-color: black;
+	background-image: url(orion_nebula.jpg), url(orion_nebula.jpg);
+	background-repeat: no-repeat, no-repeat;
+	background-attachment: fixed, fixed;
+	background-position: right top, left top;
+	background-size: 50%, 50%;
+	font-family: Georgia;
+-webkit-font-smoothing: antialiased;
+}
+
+#content {
+	width: 52%;
+	min-width: 35em;
+	max-width: 50em;
+	margin: 2.5em auto;
+	padding: 3em 5em;
+	background-color: #ece8df;
+	box-shadow: 0px 0px 30px #000;
+	color: #322;
+	background-image: url(old_mathematics.jpg);
+	background-size: 20%;
+	overflow: hidden;
+}
+
+#content a {
+	color: #3d1e1e;
+}
+
+#content a:hover {
+	color: #5b2324;
+}
+
+#content a:active {
+	color: inherit;
+}
+
+#content a:visited {
+	color: inherit;
+}
+
+h1, h2 {
+	text-align: center;
+	font-weight: normal;
+}
+
+/* @group Headshot */
+
+#headshot div {
+	display: block;
+	margin: 0 auto;
+	width: 180px;
+	height: 180px;
+	border-radius: 90px;
+	/*box-shadow: 0px 0px 10px #444 inset;*/
+	border: 1px dotted black;
+	background: #efedeb url(headshot.png) no-repeat center top;
+	
+}
+
+figure#headshot {
+	margin-bottom: 4em;
+}
+
+figure#headshot:after {
+	height: 4em;
+}
+
+/* @end */
+
+/* @group Main Header */
+
+header#main hgroup {
+	border-top-style: double;
+	border-bottom-style: double;
+	border-top-width: 4px;
+	border-bottom-width: 4px;
+}
+
+header#main hgroup h1 {
+	font-size: 2.5em;
+	margin-top: 0.25em;
+	margin-bottom: 0.25em;
+}
+
+header#main hgroup h2 {
+	font-style: italic;
+	font-size: 1.1em;
+}
+
+header#main {
+	margin-bottom: 4em;
+}
+
+header#main:after {
+	height: 4em;
+}
+
+/* @end */
+
+/* @group Blocks and Lines */
+
+hgroup.block, section.block {
+	border-top: 0.1em solid black;
+	border-bottom: 0.1em solid black;
+}
+
+section.block h2 {
+	font-size: 1.65em;
+	margin: 0;
+	margin-bottom: 0.5em;
+	padding: 0.33em;
+	border-bottom: 0.06em solid black;
+}
+
+section.block .inset, section.block .position {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.block {
+	margin-bottom: 84px;
+	margin-top: 0;
+	position: relative;
+}
+
+.block:after {
+	content: ".";
+	display: block;
+	width: 1px;
+	height: 85px;
+	margin: 0 auto;
+	background: black;
+	text-indent: -100em;
+	position: absolute;
+	left: 50%;
+}
+
+.block:last-child {
+	margin-bottom: 0;
+}
+
+.block:last-child:after {
+	display: none;
+}
+
+/* @end */
+
+/* @group Main Navigation */
+
+nav ol {
+	font-size: 0.95em;
+	list-style-type: none;
+	margin: 0 auto;
+	width: 50%;
+	padding:0.66em 0;
+	text-align: center;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-bottom-width: 0.1em;
+	border-top-width: 0.1em;
+}
+
+nav ol li {
+	display: inline;
+	font-style: italic;
+}
+
+nav ol li:after {
+	content: " \2022";
+	text-decoration: none;
+}
+
+nav ol li:last-child:after {
+	content: "";
+}
+
+/* @end */
+
+/* @group Portfolio */
+
+#portfolio ol {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	overflow: hidden;
+}
+
+#portfolio ol li.project {
+	width: 20%;
+	margin: 1em 2.5%;
+	display: inline-block;
+	float: left;
+}
+#portfolio ol li.project.first {
+	clear: left;
+}
+
+#portfolio ol li.project img {
+	width: 100%;
+}
+
+#portfolio ol li.project h4, #portfolio ol li.project h5 {
+	font-weight: normal;
+	margin: 0.25em 0;
+}
+
+#portfolio ol li.project h4 {
+	font-size:0.8em;
+}
+
+#portfolio ol li.project h5 {
+	font-size: 0.7em;
+	font-style: italic;
+}
+/* @end */
+
+/* @group Experience */
+
+#experience > ol {
+	list-style-type: none;
+	padding: 0;
+}
+
+.position hgroup {
+	margin-bottom: 0.5em;
+}
+
+.position hgroup date {
+	float: right;
+}
+
+.position hgroup h3 {
+	font-size: 1.2em;
+	font-weight: normal;
+	margin: 0.25em 0;
+}
+
+.position hgroup > date, .position hgroup h4 {
+	font-size: 0.9em;
+	margin: 0;
+	font-weight: normal;
+	font-style: italic;
+	color: #4e4a4a;
+}
+
+.position ul {
+	font-size: 0.9em;
+	padding-left: 2em;
+	margin-bottom: 1em;
+}
+
+.position ul li {
+	margin-bottom: 0.25em;
+}
+
+/* @end */
+
+/* @group Social */
+
+#social ul {
+	padding: 0;
+}
+
+#social ul:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#social ul li {
+	display: block;
+	width: 20%;
+	text-align: center;
+	margin: 0;
+	float: left;
+}
+
+#social ul li img {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 0.25em;
+}
+
+#social a {
+	font-size: 0.9em;
+}
+
+/* @end */
+
+/* @group Contact */
+
+#contact {
+	text-align: center;
+}
+
+#contact address {
+	margin-bottom: 1em;
+}
+
+#contact address > a {
+	display: block;
+}
+
+/* @end */
+
+
+
+/* @group Portfolio Detail */
+
+a#back {
+	position: absolute;
+	top: 1em;
+	font-size: 2em;
+	text-decoration: none;
+	left: 1em;
+}
+
+h1#project-title {
+	margin-bottom: 0.25em;
+}
+
+h2#project-clientdate {
+	border-bottom: none;
+	font-style: italic;
+	font-size: 1em;
+	
+}
+aside#project-gallery {
+	width: 50%;
+	display: inline-block;
+	overflow: hidden;
+	float: left;
+	margin-top: 1em;
+	margin-left: 3%;
+}
+
+aside#project-gallery figure {
+	margin: 0;
+}
+
+aside#project-gallery figure figcaption {
+	font-style: italic;
+	font-size: 0.82em;
+	text-align: center;
+	margin-top: 1em;
+}
+
+aside#project-gallery figure img {
+	display: block;
+	margin: 0 auto;
+}
+
+aside#project-gallery img {
+	max-width: 100%;
+}
+
+aside#project-gallery ol {
+	list-style-type: none;
+	padding: 0;
+	text-align: center;
+}
+
+aside#project-gallery li {
+	display: inline;
+}
+
+aside#project-gallery li img {
+	max-height: 40px;
+}
+
+#project-description {
+	width: 40%;
+	overflow: hidden;
+	font-size: 0.9em;
+	float: right;
+	margin-top: 1em;
+	margin-right: 3%;
+}
+
+#project-description p:first-child {
+	margin-top: 0;
+}
+
+#back {
+	clear: both;
+	text-align: center;
+	padding-top: 2em;
+	margin-bottom: 1em;
+}
+
+/* @end */
+
+@media screen and (max-width: 768px) {
+
+body {
+	background-color: #000;
+	background-image: url(orion_nebula.jpg), url(orion_nebula.jpg);
+	background-attachment: scroll;
+	background-repeat: no-repeat, no-repeat;
+	background-size: 100%;
+	background-position: center -5%, center bottom;
+	padding-bottom: 15em;
+
+}
+
+/* @group Header */
+
+#headshot {
+	display: none;
+}
+
+header#main hgroup {
+	border-top: none;
+}
+
+header#main hgroup h1 {
+	font-size: 2em;
+}
+
+header#main hgroup h2 {
+	font-size: 0.9em;
+	padding: 0 1em;
+}
+
+header#main {
+	margin-bottom: 4em;
+}
+
+header#main:after {
+	height: 4em;
+}
+
+/* @end */
+
+.block {
+	margin-bottom: 2.5em;
+}
+
+.block:after {
+	height: 2.5em;
+
+}
+
+/* @group Main Navigation */
+
+nav ol li {
+	display: block;
+	margin-bottom: 0.5em;
+}
+
+nav ol li:last-child {
+	margin-bottom: 0;
+}
+
+nav ol li:after {
+	display: none;
+}
+
+/* @end */
+
+#content {
+	min-width: 95%;
+	padding: 2.5%;
+	margin: 0;
+	margin-top: 4em;
+}
+
+#details {
+	display: none;
+}
+
+#portfolio .category {
+	width: 100%;
+	display: block;
+	float: none;
+}
+
+#portfolio .category h3 {
+	display: none;
+}
+
+#portfolio #identity ol {
+	margin-top: 0;
+}
+
+#social ul {
+	text-align: center;
+}
+
+
+#social ul li {
+	display: inline-block;
+	width: auto;
+	margin: 0.5em;
+	float: none;
+}
+
+
+.position hgroup {
+	margin-bottom: 0.5em;
+}
+
+.position hgroup date {
+	float: none;
+	display: block;
+	margin-bottom: 0.5em;
+}
+
+.position hgroup h3 {
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0.25em 0;
+}
+
+.position hgroup > date, .position hgroup h4 {
+	font-size: 0.8em;
+	font-weight: normal;
+	font-style: italic;
+	color: #4e4a4a;
+}
+
+
+aside#project-gallery {
+	width: auto;
+	display: block;
+	overflow: hidden;
+	float: none;
+	margin-top: 1em;
+	margin-left: 0;
+}
+
+#project-description {
+	width: auto;
+	overflow: hidden;
+	font-size: 0.9em;
+	float: none;
+	margin-top: 0;
+	margin-right: 0;
+	border-top: 1px dotted black;
+}
+
+#project-description p:first-child {
+	margin-top: 1em;
+}
+
+}

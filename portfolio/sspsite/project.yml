@@ -1,0 +1,15 @@
+title: Sandy Springs Pediatrics design and logo
+client: Sandy Springs Pediatrics
+datestamp: 2009-02-01
+date: Spring 2009
+description: >
+  I was asked by Sandy Springs Pediatrics to update their website. In the
+  process I asked if I could update their logo, which had been made with
+  a wizard in PhotoImpact many years ago. They were happy with my proposed logo
+  and I integrated it into the new website design, which replaced a 
+  site that had been originally made in Microsoft Frontpage (and hadn't aged
+  all that well).
+images: 
+  - {filename: home.png, alt: "The homepage, with practice news and quick reference links"}
+  - {filename: logo.png, alt: "The Sandy Springs Pediatrics logo"}
+  - {filename: newpatients.png, alt: "An example of a regular content page"}

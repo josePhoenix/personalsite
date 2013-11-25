@@ -1,0 +1,13 @@
+organization: Associated Students of Pomona College
+title: Lead Developer, Digital Media and Programming Group
+start: January 2011
+end: present
+datestamp: 2011-01-01
+experience:
+ - Built an online <a href="http://aspc.pomona.edu/courses/schedule/">course schedule builder</a> used by over 2,400 students
+ - Created provisioning system that provides 20+ student organizations with secure and reliable web hosting
+ - Migrated primary web server from a physical machine to a virtualized one
+ - Created a new logo and unified visual design for the ASPC's <a href="http://aspc.pomona.edu/">main web presence</a>
+ - Collected housing information into a <a href="http://aspc.pomona.edu/housing/">searchable database</a> for students
+ - Launched a <a href="http://coopstore.pomona.edu/">new online storefront</a> for the student-operated Coop Store
+ - Automated the extraction and import of data for 700+ products in the online store

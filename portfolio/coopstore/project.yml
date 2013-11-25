@@ -1,0 +1,28 @@
+title: The Coop Store
+client: Associated Students of Pomona College
+datestamp: 2012-03-01
+date: Spring 2012
+description: >
+  I was approached by a member of the student government about a situation with
+  the online storefront for our school store. Much of the student government's
+  income during the year comes from selling apparel online to alumni and 
+  admitted or prospective students. The problem was that there was no way to
+  update prices or add new products without contacting the original developer, 
+  who would then laboriously edit the individual hard-coded HTML files. (This 
+  was but one of several problems, to be frank.)
+  
+  Rather than try to fix the current system, I advised the full-time store 
+  manager that it was time to modernize. After researching the different options
+  for hosted ecommerce services, we settled on Shopify.
+  
+  This wasn't a very technically challenging project, since the only programming
+  I did was to create a collection of Liquid templates for our store and write
+  a script to scrape all of the existing product listings. However, I did have
+  the experience of dealing with all of the real world concerns that go into
+  a project for a retail business. I learned some of the intricacies of 
+  credit card merchant accounts, set up an account with USPS for shipping 
+  estimates, and provided training to managers and our store manager.
+images: 
+  - {filename: homepage.png, alt: "The storefront itself (there is also an optional slideshow/gallery, hidden here)"}
+  - {filename: product.png, alt: "A product page"}
+  - {filename: mobile.png, alt: "The site was designed with mobile and tablet form-factors in mind"}
