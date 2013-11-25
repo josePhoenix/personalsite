@@ -4,7 +4,7 @@
     <figure class="block" id="headshot">
         <div><!-- Portrait by Jing Jin --></div>
     </figure>
-    <header id="main" class="block">
+    <header id="main" class="block tall">
       <hgroup>
         <h1>Joseph Long</h1>
         <h2>designer and developer studying <a href="http://physastro.pomona.edu/">astrophysics</a> at <a href="http://pomona.edu/">Pomona College</a></h2>
@@ -12,12 +12,29 @@
     </header>
     <nav class="block">
       <ol>
+        {% if posts %}<li><a href="/writing/">writing</a></li>{% endif %}
         <li><a href="#portfolio">portfolio</a></li>
         <li><a href="#experience">experience</a></li>
         <li><a href="#social">social</a></li>
         <li><a href="#contact">contact</a></li>
       </ol>
     </nav>
+    {% if posts %}<section id="writing" class="block">
+      <h2>Writing</h2>
+      <ol>
+        {% for post in posts %}
+        <li class="post">
+          <h3><a href="/writing/{{ post.slug }}/">{{ post.title }}</a></h3>
+          <h4><date>{{ post.date.strftime('%B %d, %Y') }}</date></h4>
+          <p class="excerpt">{{ post.excerpt }}
+            <a href="#">&hellip;</a>
+          </p>
+        </li>
+        {% endfor %}
+      <div id="writinglink">
+        <a href="#">writing archive &rarr;</a>
+      </div>
+    </section>{% endif %}
     <section id="portfolio" class="block">
       <h2>Portfolio</h2>
       <ol class="projects">

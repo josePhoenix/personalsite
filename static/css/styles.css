@@ -72,20 +72,20 @@ figure#headshot:after {
 
 /* @group Main Header */
 
-header#main hgroup {
+header#main hgroup, header#post-header hgroup {
 	border-top-style: double;
 	border-bottom-style: double;
 	border-top-width: 4px;
 	border-bottom-width: 4px;
 }
 
-header#main hgroup h1 {
+header#main hgroup h1, header#post-header hgroup h1 {
 	font-size: 2.5em;
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
 }
 
-header#main hgroup h2 {
+header#main hgroup h2, header#post-header hgroup h2 {
 	font-style: italic;
 	font-size: 1.1em;
 }
@@ -98,11 +98,19 @@ header#main:after {
 	height: 4em;
 }
 
+header#post-header {
+	margin-bottom: 2em;
+}
+
+header#post-header:after {
+	height: 2em;
+}
+
 /* @end */
 
 /* @group Blocks and Lines */
 
-hgroup.block, section.block {
+hgroup.block, section.block, div.block, article.block {
 	border-top: 0.1em solid black;
 	border-bottom: 0.1em solid black;
 }
@@ -115,13 +123,19 @@ section.block h2 {
 	border-bottom: 0.06em solid black;
 }
 
-section.block .inset, section.block .post, section.block .position {
+section.block .inset, section.block .post, section.block .position, article#post-body > * {
 	padding-left: 1em;
 	padding-right: 1em;
 }
 
 .block {
 	margin-bottom: 84px;
+	margin-top: 0;
+	position: relative;
+}
+
+.block.short {
+	margin-bottom: 34px;
 	margin-top: 0;
 	position: relative;
 }
@@ -136,6 +150,10 @@ section.block .inset, section.block .post, section.block .position {
 	text-indent: -100em;
 	position: absolute;
 	left: 50%;
+}
+
+.block.short:after {
+	height: 35px;
 }
 
 .block:last-child {
@@ -154,7 +172,7 @@ nav ol {
 	font-size: 0.95em;
 	list-style-type: none;
 	margin: 0 auto;
-	width: 55%;
+	width: 60%;
 	padding:0.66em 0;
 	text-align: center;
 	border-top-style: solid;
@@ -180,6 +198,12 @@ nav ol li:last-child:after {
 /* @end */
 
 /* @group Writing */
+#author {width: 60%; margin-left: auto; margin-right: auto;}
+#author div {
+  text-align: center;
+  margin: 0.5em 0;
+}
+
 #writing ol {
 	list-style-type: none;
 	padding: 0;
@@ -195,13 +219,22 @@ nav ol li:last-child:after {
 }
 
 #writing li h4 {
-  margin: 0.25em 0;
-  font-size: 0.8em;
+	font-size: 0.9em;
+	margin: 0;
+	font-weight: normal;
+	font-style: italic;
+	color: #4e4a4a;
 }
 
 #writing li .excerpt {
   font-style: italic;
   font-size: 0.9em;
+}
+
+#writinglink {
+  text-align: center;
+  padding: 1em;
+  font-variant: small-caps;
 }
 /* @end */
 

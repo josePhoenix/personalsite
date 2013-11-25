@@ -3,10 +3,18 @@ from PIL import Image
 import subprocess
 import os, glob, shutil
 import yaml
+import datetime
 from pprint import pprint
 from markdown import markdown
-
 import os, errno
+
+# A quick and dirty static site generator (kind of like Jekyll) to generate
+# static HTML for my personal site. Warning: this code is messy and not
+# for public consumption :)
+# 
+# This code is public domain, should anyone want to attempt to repurpose it.
+# (I retain copyright of all content and the design of the site, except as
+# otherwise noted.)
 
 def ensure_dir(path):
     """
@@ -44,9 +52,9 @@ project_template = env.get_template('project.html')
 
 # Parse available portfolio projects
 for project in glob.glob(os.path.join(APP_ROOT, 'portfolio', '*', 'project.yml')):
-    print 'Found project: {0}'.format(project)
     project_dir = os.path.split(project)[0]
     project_name = os.path.split(project_dir)[1] # directory base name
+    print 'Found project {0} ({1})'.format(project_name, project)
     with open(project) as f:
         portfolio[project_name] = yaml.safe_load(f)
         # YAML turns a double linebreak into a single one, breaking Markdown
@@ -75,31 +83,71 @@ for project in glob.glob(os.path.join(APP_ROOT, 'portfolio', '*', 'project.yml')
     ensure_dir(fullsize_dir)
     
     for image in portfolio[project_name]['images']:
+        thumbdest = os.path.join(thumbs_dir, image['filename'])
+        defaultdest = os.path.join(OUTPUT_ROOT, project_name, image['filename'])
+        
+        if os.path.exists(thumbdest) and os.path.exists(defaultdest):
+            continue # don't regenerate if output files exist
+        
         im = Image.open(os.path.join(project_dir, image['filename']))
         thumb = im.copy()
         default = im.copy()
         
         thumb.thumbnail(thumb_size, Image.ANTIALIAS)
-        thumb.save(os.path.join(thumbs_dir, image['filename']))
+        thumb.save(thumbdest)
         
         default.thumbnail(default_size, Image.ANTIALIAS)
-        default.save(os.path.join(OUTPUT_ROOT, project_name, image['filename']))
+        default.save(defaultdest)
         
         subprocess.call('cp -pv {src} {dst}'.format(
             src=os.path.join(project_dir, image['filename']),
             dst=fullsize_dir,
         ), shell=True)
-    
-# generate homepage
 
+all_posts = []
+post_template = env.get_template('post.html')
+# parse available blog posts
+for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
+    post_filename = os.path.split(post_path)[1]
+    y, m, d = map(int, post_filename.split('-')[:3])
+    post_date = datetime.date(y, m, d)
+    post_slug = '-'.join(post_filename.split('-')[3:])[:-3] # chop off '.md'
+    
+    post_data = open(post_path, 'r').read()
+    post_meta, post_content = post_data.split('---')[1:]
+    post = yaml.load(post_meta.strip())
+    post['content'] = post_content.strip()
+    post['date'] = post_date
+    post['slug'] = post_slug
+    
+    # generate individual post files
+    ensure_dir(os.path.join(OUTPUT_ROOT, 'writing', post_slug))
+    with open(os.path.join(OUTPUT_ROOT,  'writing', post_slug, 'index.html'), 'w') as f:
+        f.write(post_template.render(**post))
+    
+    all_posts.append((post_date, post))
+
+# sort and generate post archive
+all_posts.sort()
+all_posts.reverse()
+all_posts = [post[1] for post in all_posts]
+# archive_template = env.get_template('archive.html')
+# 
+# ensure_dir(os.path.join(OUTPUT_ROOT, 'writing', 'archive'))
+# with open(os.path.join(OUTPUT_ROOT,  'writing', 'archive', 'index.html'), 'w') as f:
+#     f.write(archive_template.render(posts=all_posts))
+
+# generate homepage
+home_template = env.get_template("home.html")
+
+# sort the processed projects
 projects = [(info['datestamp'], key) for key, info in portfolio.items()]
 projects.sort()
 projects.reverse()
 
 sorted_portfolio = [(key, portfolio[key]) for date, key in projects]
-pprint(sorted_portfolio)
 
-home_template = env.get_template("home.html")
+# load and sort positions
 
 positions = []
 
@@ -112,8 +160,11 @@ positions.sort()
 positions.reverse()
 positions = [data for datestamp, data in positions]
 
+# render the homepage
+
 with open(os.path.join(OUTPUT_ROOT, 'index.html'), 'w') as f:
     f.write(home_template.render(
         projects=sorted_portfolio,
-        positions=positions
+        positions=positions,
+        posts=all_posts[:10]
     ))
