@@ -115,7 +115,7 @@ section.block h2 {
 	border-bottom: 0.06em solid black;
 }
 
-section.block .inset, section.block .position {
+section.block .inset, section.block .post, section.block .position {
 	padding-left: 1em;
 	padding-right: 1em;
 }
@@ -154,7 +154,7 @@ nav ol {
 	font-size: 0.95em;
 	list-style-type: none;
 	margin: 0 auto;
-	width: 50%;
+	width: 55%;
 	padding:0.66em 0;
 	text-align: center;
 	border-top-style: solid;
@@ -177,6 +177,32 @@ nav ol li:last-child:after {
 	content: "";
 }
 
+/* @end */
+
+/* @group Writing */
+#writing ol {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	overflow: hidden;
+}
+
+#writing li h3 {
+	font-size: 1.2em;
+	font-weight: normal;
+	margin: 0.25em 0;
+}
+
+#writing li h4 {
+  margin: 0.25em 0;
+  font-size: 0.8em;
+}
+
+#writing li .excerpt {
+  font-style: italic;
+  font-size: 0.9em;
+}
 /* @end */
 
 /* @group Portfolio */
