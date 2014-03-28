@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ title }} &ndash; Joseph Long{% endblock %}
 {% block head %}
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['%%','%%'], ['\\(','\\)']]}
+});
+</script>
 <script type="text/javascript"
    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="stylesheet" href="/css/pygments.css" type="text/css" media="screen" title="Default" charset="utf-8">

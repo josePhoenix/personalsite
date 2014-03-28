@@ -7,7 +7,7 @@ excerpt: "Smooth a noisy signal by convolving it with a 'boxcar' kernel (or: the
 
 Sometimes, when working with scientific data, you have noisy data that you need to extract low-frequency components from.
 
-Imagine, for example, that for a project you have recorded some audio clips that have a high-frequency "hiss" artifact from your recording equipment. You can eliminate the hiss while not destroying the underlying signal that you're interested in.
+Imagine, for example, that for a project you have recorded some audio clips that have a high-frequency "hiss" artifact from your recording equipment. Using a convolution, you can eliminate the hiss while not destroying the underlying signal that you're interested in.
 
 ![png](AstroPy_boxcar_10_1.png)
 
@@ -77,10 +77,14 @@ ylim(-8, 8)
 
 # Smooth the noisy signal with `convolve`
 
-Here we're using AstroPy's `convolve` function with a "boxcar" kernel of width 10 to eliminate the high frequency noise. It's not perfect, but it's pretty good.
+Boxcar smoothing is equivalent to taking your signal %%x[t]%% and using it to make a new signal %%x'[t]%% where each element is the average of *w* adjacent elements. In other words, for *w* = 5, element %%x'[7]%% will be given by 
+
+$$ x'[7] = \frac{x[5] + x[6] + x[7] + x[8] + x[9]}{5}. $$
+
+It's not perfect, but it's frequently good enough. Here we're using AstroPy's `convolve` function with a "boxcar" kernel of width *w* = 11 to eliminate the high frequency noise.
 
 ```python
-smoothed_signal = convolve(noisy_signal, Box1DKernel(10))
+smoothed_signal = convolve(noisy_signal, Box1DKernel(11))
 ```
 
 ```python
