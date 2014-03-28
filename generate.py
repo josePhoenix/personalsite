@@ -30,9 +30,6 @@ def ensure_dir(path):
 
 @evalcontextfilter
 def render_markdown(eval_ctx, value):
-    print '#'*10
-    print value
-    print '#'*10
     if eval_ctx.autoescape:
         return Markup(markdown(value, extensions=['fenced_code', 'codehilite',]))
     else:
@@ -141,20 +138,12 @@ for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
 
     all_posts.append((post_date, post))
 
-# move supporting files for blog posts to the output directory
-# for post_file in glob.glob(os.path.join(APP_ROOT, 'posts', '*')):
-#     if post_path.lower()[-3:] == '.md':
-#         continue
-#     subprocess.call('cp -Rpv {src} {dst}'.format(
-#         src=post_file,
-#         dst=os.path.join(APP_ROOT, 'output')), shell=True)
-
 # sort and generate post archive
 all_posts.sort()
 all_posts.reverse()
 all_posts = [post[1] for post in all_posts]
 archive_template = env.get_template('archive.html')
-# 
+
 ensure_dir(os.path.join(OUTPUT_ROOT, 'writing'))
 with open(os.path.join(OUTPUT_ROOT,  'writing', 'index.html'), 'w') as f:
     f.write(archive_template.render(posts=all_posts))

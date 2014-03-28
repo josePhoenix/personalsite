@@ -19,7 +19,7 @@ For this, we used [IPython](http://ipython.org) (with NumPy, SciPy, Matplotlib a
 
 The IPython notebook makes a lot of things easier, from keeping track of what you've tried to writing blog posts like this one. Open it up, and let's get started.
 
-Bring the usual suspects (`np`, `plt`, etc.) into the namespace and tell IPython you want inline plots.
+Use the magic command `%pylab inline` to bring the usual suspects (`np`, `plt`, etc.) into the namespace and tell IPython you want inline plots.
 
     %pylab inline
 
