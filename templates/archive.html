@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Writing Archive &ndash; Joseph Long{% endblock %}
+{% block content %}
+<header id="post-header" class="block">
+  <hgroup>
+    <h1 id="post-title">Writing Archive</h1>
+    <!-- <h2 id="post-date">{{ posts[-1].date }}</h2> -->
+  </hgroup>
+</header>
+<section class="block" id="writing">
+  <ol class="archive">
+    {% for post in posts %}
+        <li class="post">
+          <h3><a href="/writing/{{ post.slug }}/">{{ post.title }}</a></h3>
+          <h4><date>{{ post.date.strftime('%B %d, %Y') }}</date></h4>
+          <p class="excerpt">{{ post.excerpt }}
+            <a href="#">&hellip;</a>
+          </p>
+        </li>
+    {% endfor %}
+  </ol>
+  <div id="back"><a href="/">&larr; go back</a></div>
+</section>
+{% endblock %}

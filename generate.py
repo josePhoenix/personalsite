@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from jinja2 import Environment, FileSystemLoader, evalcontextfilter, Markup
 from PIL import Image
 import subprocess
@@ -29,10 +30,13 @@ def ensure_dir(path):
 
 @evalcontextfilter
 def render_markdown(eval_ctx, value):
+    print '#'*10
+    print value
+    print '#'*10
     if eval_ctx.autoescape:
-        return Markup(markdown(value))
+        return Markup(markdown(value, extensions=['fenced_code', 'codehilite',]))
     else:
-        return markdown(value)
+        return markdown(value, extensions=['fenced_code', 'codehilite',])
 
 APP_ROOT = os.path.dirname(os.path.realpath(__file__))
 OUTPUT_ROOT = os.path.join(APP_ROOT, 'output')
@@ -113,6 +117,8 @@ for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
     post_date = datetime.date(y, m, d)
     post_slug = '-'.join(post_filename.split('-')[3:])[:-3] # chop off '.md'
     
+    print 'Found blog post', post_slug
+    
     post_data = open(post_path, 'r').read()
     post_meta, post_content = post_data.split('---')[1:]
     post = yaml.load(post_meta.strip())
@@ -125,17 +131,33 @@ for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
     with open(os.path.join(OUTPUT_ROOT,  'writing', post_slug, 'index.html'), 'w') as f:
         f.write(post_template.render(**post))
     
+    # copy supporting files for post
+    if os.path.isdir(post_path[:-3]): # chop off .md and check if there's a directory
+        for post_file in glob.glob(os.path.join(APP_ROOT, 'posts', post_path[:-3], '*')):
+            # print post_file, '->', os.path.join(APP_ROOT, 'output', 'writing', post_slug, post_file)
+            subprocess.call('cp -Rp {src} {dst}'.format(
+                src=post_file,
+                dst=os.path.join(APP_ROOT, 'output', 'writing', post_slug)), shell=True)
+
     all_posts.append((post_date, post))
+
+# move supporting files for blog posts to the output directory
+# for post_file in glob.glob(os.path.join(APP_ROOT, 'posts', '*')):
+#     if post_path.lower()[-3:] == '.md':
+#         continue
+#     subprocess.call('cp -Rpv {src} {dst}'.format(
+#         src=post_file,
+#         dst=os.path.join(APP_ROOT, 'output')), shell=True)
 
 # sort and generate post archive
 all_posts.sort()
 all_posts.reverse()
 all_posts = [post[1] for post in all_posts]
-# archive_template = env.get_template('archive.html')
+archive_template = env.get_template('archive.html')
 # 
-# ensure_dir(os.path.join(OUTPUT_ROOT, 'writing', 'archive'))
-# with open(os.path.join(OUTPUT_ROOT,  'writing', 'archive', 'index.html'), 'w') as f:
-#     f.write(archive_template.render(posts=all_posts))
+ensure_dir(os.path.join(OUTPUT_ROOT, 'writing'))
+with open(os.path.join(OUTPUT_ROOT,  'writing', 'index.html'), 'w') as f:
+    f.write(archive_template.render(posts=all_posts))
 
 # generate homepage
 home_template = env.get_template("home.html")

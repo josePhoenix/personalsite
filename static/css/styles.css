@@ -212,6 +212,10 @@ nav ol li:last-child:after {
 	overflow: hidden;
 }
 
+#writing ol.archive {
+    margin-top: 1em;
+}
+
 #writing li h3 {
 	font-size: 1.2em;
 	font-weight: normal;
@@ -236,6 +240,34 @@ nav ol li:last-child:after {
   padding: 1em;
   font-variant: small-caps;
 }
+
+#post-body img {
+    max-width: 100%;
+}
+
+.codehilite {
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+.codehilite::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.codehilite::-webkit-scrollbar:vertical {
+    width: 7px;
+}
+
+.codehilite::-webkit-scrollbar:horizontal {
+    height: 7px;
+}
+
+.codehilite::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 0.1em solid rgb(213, 213, 213); /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+
 /* @end */
 
 /* @group Portfolio */
