@@ -111,3 +111,9 @@ xlim(0, 4)
 ```
 
 ![png](AstroPy_boxcar_10_1.png)
+
+# Now what?
+
+Different shaped kernels can provide useful behavior. Convolution can also be performed in two dimensions. For example, if you want to smooth an image, you can use the `Box2DKernel` or any of the other [kernels available in AstroPy](http://astropy.readthedocs.org/en/latest/convolution/kernels.html). (If you are familiar with Photoshop, the `Gaussian2DKernel` is analogous to the useful "Gaussian Blur" filter.)
+
+The [documentation](http://astropy.readthedocs.org/en/latest/convolution/kernels.html) for this part of AstroPy is particularly good, and I highly recommend reading it!
