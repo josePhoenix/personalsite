@@ -12,10 +12,10 @@ MathJax.Hub.Config({
 {% endblock %}
 {% block content %}
 <header id="post-header" class="block">
-  <hgroup>
+  <div class="headings">
     <h1 id="post-title">{{ title }}</h1>
     <h2 id="post-date">{{ date.strftime('%B %d, %Y') }}</h2>
-  </hgroup>
+  </div>
 </header>
 <div class="block short" id="author">
   <div>by <a href="/">Joseph Long</a></div>

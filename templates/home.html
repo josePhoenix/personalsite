@@ -5,10 +5,10 @@
         <div><!-- Portrait by Jing Jin --></div>
     </figure>
     <header id="main" class="block tall">
-      <hgroup>
+      <div class="headings">
         <h1>Joseph Long</h1>
         <h2>designer and developer studying <a href="http://physastro.pomona.edu/">astrophysics</a> at <a href="http://pomona.edu/">Pomona College</a></h2>
-      </hgroup>
+      </div>
     </header>
     <nav class="block">
       <ol>
@@ -58,11 +58,11 @@
       <ol>
         {% for position in positions %}
         <li class="position">
-          <hgroup>
+          <div class="headings">
             <h3>{{ position.organization }}</h3>
             <date>{{ position.start }} &mdash; {{ position.end }}</date>
             <h4>{{ position.title }}</h4>
-          </hgroup>
+          </div>
           <ul>
             {% for item in position.experience %}
             <li>{{ item }}</li>

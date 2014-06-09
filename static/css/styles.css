@@ -72,20 +72,20 @@ figure#headshot:after {
 
 /* @group Main Header */
 
-header#main hgroup, header#post-header hgroup {
+header#main .headings, header#post-header .headings {
 	border-top-style: double;
 	border-bottom-style: double;
 	border-top-width: 4px;
 	border-bottom-width: 4px;
 }
 
-header#main hgroup h1, header#post-header hgroup h1 {
+header#main .headings h1, header#post-header .headings h1 {
 	font-size: 2.5em;
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
 }
 
-header#main hgroup h2, header#post-header hgroup h2 {
+header#main .headings h2, header#post-header .headings h2 {
 	font-style: italic;
 	font-size: 1.1em;
 }
@@ -110,7 +110,7 @@ header#post-header:after {
 
 /* @group Blocks and Lines */
 
-hgroup.block, section.block, div.block, article.block {
+.headings.block, section.block, div.block, article.block {
 	border-top: 0.1em solid black;
 	border-bottom: 0.1em solid black;
 }
@@ -320,21 +320,21 @@ nav ol li:last-child:after {
 	padding: 0;
 }
 
-.position hgroup {
+.position .headings {
 	margin-bottom: 0.5em;
 }
 
-.position hgroup date {
+.position .headings date {
 	float: right;
 }
 
-.position hgroup h3 {
+.position .headings h3 {
 	font-size: 1.2em;
 	font-weight: normal;
 	margin: 0.25em 0;
 }
 
-.position hgroup > date, .position hgroup h4 {
+.position .headings > date, .position .headings h4 {
 	font-size: 0.9em;
 	margin: 0;
 	font-weight: normal;
@@ -508,15 +508,15 @@ body {
 	display: none;
 }
 
-header#main hgroup {
+header#main .headings {
 	border-top: none;
 }
 
-header#main hgroup h1 {
+header#main .headings h1 {
 	font-size: 2em;
 }
 
-header#main hgroup h2 {
+header#main .headings h2 {
 	font-size: 0.9em;
 	padding: 0 1em;
 }
@@ -595,23 +595,23 @@ nav ol li:after {
 }
 
 
-.position hgroup {
+.position .headings {
 	margin-bottom: 0.5em;
 }
 
-.position hgroup date {
+.position .headings date {
 	float: none;
 	display: block;
 	margin-bottom: 0.5em;
 }
 
-.position hgroup h3 {
+.position .headings h3 {
 	font-size: 1em;
 	font-weight: normal;
 	margin: 0.25em 0;
 }
 
-.position hgroup > date, .position hgroup h4 {
+.position .headings > date, .position .headings h4 {
 	font-size: 0.8em;
 	font-weight: normal;
 	font-style: italic;
