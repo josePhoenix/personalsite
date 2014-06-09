@@ -30,9 +30,6 @@ def ensure_dir(path):
 
 @evalcontextfilter
 def render_markdown(eval_ctx, value):
-    print
-    print value
-    print
     if eval_ctx.autoescape:
         return Markup(markdown(value, extensions=['fenced_code', 'codehilite',]))
     else:
