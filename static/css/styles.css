@@ -222,7 +222,7 @@ nav ol li:last-child:after {
 	margin: 0.25em 0;
 }
 
-#writing li h4 {
+#writing li p.date {
 	font-size: 0.9em;
 	margin: 0;
 	font-weight: normal;

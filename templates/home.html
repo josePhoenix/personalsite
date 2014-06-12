@@ -25,7 +25,7 @@
         {% for post in posts %}
         <li class="post">
           <h3><a href="/writing/{{ post.slug }}/">{{ post.title }}</a></h3>
-          <h4><date>{{ post.date.strftime('%B %d, %Y') }}</date></h4>
+          <p class="date"><date>{{ post.date.strftime('%B %d, %Y') }}</date></p>
           <p class="excerpt">{{ post.excerpt }}
             <a href="#">&hellip;</a>
           </p>
