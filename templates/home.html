@@ -25,12 +25,13 @@
         {% for post in posts %}
         <li class="post">
           <h3><a href="/writing/{{ post.slug }}/">{{ post.title }}</a></h3>
-          <p class="date"><date>{{ post.date.strftime('%B %d, %Y') }}</date></p>
+          <p class="published"><time datetime="{{ post.date.strftime('%F') }}" pubdate>{{ post.date.strftime('%B %d, %Y') }}</time></p>
           <p class="excerpt">{{ post.excerpt }}
             <a href="#">&hellip;</a>
           </p>
         </li>
         {% endfor %}
+      </ol>
       <div id="writinglink">
         <a href="/writing/">writing archive &rarr;</a>
       </div>
@@ -60,7 +61,7 @@
         <li class="position">
           <div class="headings">
             <h3>{{ position.organization }}</h3>
-            <date>{{ position.start }} &mdash; {{ position.end }}</date>
+            <span class="timespan">{{ position.start }} &mdash; {{ position.end }}</span>
             <h4>{{ position.title }}</h4>
           </div>
           <ul>
