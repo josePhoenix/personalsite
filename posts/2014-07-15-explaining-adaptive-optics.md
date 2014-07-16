@@ -3,7 +3,7 @@ title: Adaptive Optics in Plain English
 excerpt: Explaining AO using the top one thousand most common words in English (inspired by <a href="http://xkcd.com/1133/">xkcd</a>)
 ---
 
-*Back in 2012, there was an [xkcd comic](http://xkcd.com/1133/) that attempted to explain the Saturn V rocket using only the top "ten hundred" most frequently used words in the English language. From that, someone made a [text editor](http://splasho.com/upgoer5/) that would automatically flag words not in the top ten hundred. I recently stumbled over an email with my attempt to explain a research project using only the top ten hundred words in English, and thought it would be fun to try with my more recent work on adaptive optics.*
+*Back in 2012, there was an [xkcd comic](http://xkcd.com/1133/) that attempted to explain the Saturn V rocket using only the top "ten hundred" most frequently used words in the English language. ("Thousand" didn't make the list.) From that, someone made a [text editor](http://splasho.com/upgoer5/) that would automatically flag words not in the top ten hundred. I recently came across an email with my attempt to explain a research project using only the top ten hundred words in English, and thought it would be fun to try with my more recent work on adaptive optics.*
 
 # "Taking Clear Pictures of Stars From the Ground"
 ## *explained with only the top ten hundred words*
