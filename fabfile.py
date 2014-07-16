@@ -3,6 +3,8 @@ import unicodedata
 import re
 import datetime
 
+env.hosts = ['joseph-long.com']
+
 def slugify(value):
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
     value = re.sub('[^\w\s-]', '', value)
@@ -16,7 +18,7 @@ def prepare():
 def upload():
     local('rm -rf ./output/*')
     local('python generate.py')
-    put('./output/*', '/srv/www/')
+    local('rsync -avz --no-t --no-p -e ssh ./output/ joseph-long.com:"~/www/"')
 
 def deploy():
     prepare()
