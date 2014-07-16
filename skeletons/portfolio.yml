@@ -1,0 +1,9 @@
+title: Example Title of Project
+client: Name of Client, Affiliation
+datestamp: 2012-02-12
+date: Winter 2011-2012
+description: >
+  Lorem ipsum dolor sit amet. Body type by Letra-Set. Here at the epoch, let us forget!
+images: 
+  - {filename: pic1.png, alt: "One picture"}
+  - {filename: pic2.png, alt: "A second picture"}

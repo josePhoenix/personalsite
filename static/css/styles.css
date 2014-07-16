@@ -245,6 +245,12 @@ nav ol li:last-child:after {
     max-width: 100%;
 }
 
+#post-body p {
+  line-height: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
 .codehilite {
     max-width: 100%;
     overflow-x: scroll;
