@@ -12,7 +12,8 @@ def slugify(value):
 
 def prepare():
     local('git add -p')
-    local('git commit')
+    with settings(warn_only=True):
+        local('git commit')
     local('git push')
 
 def upload():
