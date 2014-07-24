@@ -107,4 +107,4 @@ Now, the moment we've all been waiting for... compile and run with Command-R! If
 
 ![Successful output in Xcode](success.png)
 
-Next time we'll draw some actual pictures.
+# Next time we'll draw some actual pictures.
