@@ -222,6 +222,10 @@ nav ol li:last-child:after {
 	margin: 0.25em 0;
 }
 
+#writing li h4 {
+  margin-top: 0;
+}
+
 #writing li p.published, #writing li h4 time {
 	font-size: 0.9em;
 	margin: 0;
