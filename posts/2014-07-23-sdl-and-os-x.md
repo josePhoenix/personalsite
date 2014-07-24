@@ -17,7 +17,7 @@ You will also need the latest compiled version of SDL 2 for Mac OS X. You can ge
 
 # Step 1: Install the framework
 
-Open the disk image you downloaded. Copy the `SDL2.framework` bundle to `/Users/yourusername/Library/Frameworks` for development purposes. For me, it's easiest to use the Terminal. (Note: you can drag and drop the framework bundle onto the Terminal window to fill in its path for the `cp` command.)
+Open the disk image you downloaded. Copy the `SDL2.framework` bundle to `/Users/yourusername/Library/Frameworks` for development purposes. For me, it's easiest to use the Terminal. (You can drag and drop the framework bundle onto the Terminal window to fill in its path for the `cp` command.)
 
 ```bash
 mkdir -p ~/Library/Frameworks
@@ -108,3 +108,7 @@ Now, the moment we've all been waiting for... compile and run with Command-R! If
 ![Successful output in Xcode](success.png)
 
 # Next time we'll draw some actual pictures.
+
+Familiarizing myself with Xcode took longer than expected. It's clearly a very powerful IDE, but it's definitely optimized for Cocoa and CocoaTouch programming.
+
+It also appears that mere mortals are no longer able to make Xcode project templates. Save a copy of this Xcode project and use it next time you need to set up a project with SDL2!

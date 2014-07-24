@@ -198,8 +198,8 @@ nav ol li:last-child:after {
 /* @end */
 
 /* @group Writing */
-#author {width: 60%; margin-left: auto; margin-right: auto;}
-#author div {
+#author, #engage {width: 60%; margin-left: auto; margin-right: auto;}
+#author div, #engage p {
   text-align: center;
   margin: 0.5em 0;
 }
