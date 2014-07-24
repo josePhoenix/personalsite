@@ -24,7 +24,7 @@ mkdir -p ~/Library/Frameworks
 cp -R /Volumes/SDL2/SDL2.framework ~/Library/Frameworks/
 ```
 
-**Note:** I ran into a problem with the compiled Mac version of SDL that crashed Xcode due to a code signature mismatch. The [simple fix](http://stackoverflow.com/questions/22368202/xcode-5-crashes-when-running-an-app-with-sdl-2) is to update the signature right after you install it.
+**Note:** I ran into a [problem](https://bugzilla.libsdl.org/show_bug.cgi?id=2058) with the compiled Mac version of SDL that crashed Xcode due to a code signature mismatch. The [simple fix](http://stackoverflow.com/questions/22368202/xcode-5-crashes-when-running-an-app-with-sdl-2) is to update the signature right after you install it.
 
 ```bash
 codesign -f -s - ~/Library/Frameworks/SDL2.framework/SDL2
