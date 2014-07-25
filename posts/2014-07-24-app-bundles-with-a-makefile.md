@@ -1,7 +1,6 @@
 ---
 title: App Bundles with a Makefile
 excerpt: "It's no secret Xcode prefers building Cocoa apps to SDL. In this post, I build my SDL test app bundle using a Makefile instead of an IDE."
-draft: true
 ---
 
 After my [recent Xcode learning experience](/writing/sdl-and-os-x/), I thought I would see if I could accomplish the same things without it. It turns out that it's pretty straightforward to use a plain old `Makefile` to create a nice double-clickable `.app` bundle.
