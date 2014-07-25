@@ -128,6 +128,19 @@ section.block .inset, section.block .post, section.block .position, article#post
 	padding-right: 1em;
 }
 
+article#post-body > ul, article#post-body > ol {
+  padding-left: 3em;
+}
+
+article#post-body > ul > li {
+  margin-bottom: 0.5em;
+}
+
+article#post-body > ol > li .codehilite, article#post-body > ul > li .codehilite {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .block {
 	margin-bottom: 84px;
 	margin-top: 0;

@@ -6,7 +6,7 @@ import os, glob, shutil
 import yaml
 import datetime
 from pprint import pprint
-from markdown import markdown
+import markdown2
 import os, errno
 
 # A quick and dirty static site generator (kind of like Jekyll) to generate
@@ -28,12 +28,22 @@ def ensure_dir(path):
             raise
     return path
 
+markdown_renderer = markdown2.Markdown(extras=[
+    'fenced-code-blocks',
+    'markdown-in-html',
+    'smarty-pants'
+])
+
 @evalcontextfilter
-def render_markdown(eval_ctx, value):
+def render_markdown2(eval_ctx, value):
+    extensions = [
+        'fenced_code',
+        'codehilite'
+    ]
     if eval_ctx.autoescape:
-        return Markup(markdown(value, extensions=['fenced_code', 'codehilite',]))
+        return Markup(markdown_renderer.convert(value))
     else:
-        return markdown(value, extensions=['fenced_code', 'codehilite',])
+        return markdown_renderer.convert(value)
 
 APP_ROOT = os.path.dirname(os.path.realpath(__file__))
 OUTPUT_ROOT = os.path.join(APP_ROOT, 'output')
@@ -41,7 +51,7 @@ OUTPUT_ROOT = os.path.join(APP_ROOT, 'output')
 env = Environment(loader=FileSystemLoader(
     os.path.join(APP_ROOT, 'templates')
 ))
-env.filters['markdown'] = render_markdown
+env.filters['markdown'] = render_markdown2
 
 # refresh static files
 subprocess.call('cp -Rpv {src} {dst}'.format(
@@ -117,7 +127,7 @@ for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
     print 'Found blog post', post_slug
 
     post_data = open(post_path, 'r').read()
-    post_meta, post_content = post_data.split('---')[1:]
+    post_meta, post_content = post_data.split('---', 2)[1:]
     post = yaml.load(post_meta.strip())
     post['content'] = post_content.strip()
     post['date'] = post_date
@@ -141,7 +151,10 @@ for post_path in glob.glob(os.path.join(APP_ROOT, 'posts', '*.md')):
 # sort and generate post archive
 all_posts.sort()
 all_posts.reverse()
-all_posts = [post[1] for post in all_posts]
+all_posts = [
+    post[1] for post in all_posts
+    if not post[1].get('draft')
+]
 archive_template = env.get_template('archive.html')
 
 ensure_dir(os.path.join(OUTPUT_ROOT, 'writing'))
