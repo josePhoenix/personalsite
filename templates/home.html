@@ -21,7 +21,7 @@
     {% if posts %}<section id="writing" class="block">
       <h2>Writing</h2>
       <ol>
-        {% for post in posts %}
+        {% for post in posts[:5] %}
         <li class="post">
           <h3><a href="/writing/{{ post.slug }}/">{{ post.title }}</a></h3>
           <p class="published"><time datetime="{{ post.date.strftime('%F') }}">{{ post.date.strftime('%B %d, %Y') }}</time></p>
