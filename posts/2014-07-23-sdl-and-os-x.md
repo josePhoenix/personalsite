@@ -1,5 +1,5 @@
 ---
-title: "SDL 2 on OS X Mavericks: Part I"
+title: "SDL 2 on OS X Mavericks"
 excerpt: "Setting up Xcode 5.1 for development with SDL 2, then getting a test program to compile and run"
 ---
 
@@ -29,8 +29,6 @@ cp -R /Volumes/SDL2/SDL2.framework ~/Library/Frameworks/
 ```bash
 codesign -f -s - ~/Library/Frameworks/SDL2.framework/SDL2
 ```
-
-
 
 # Step 2: Make an Xcode project
 
