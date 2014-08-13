@@ -20,7 +20,7 @@ def prepare():
 def upload():
     local('rm -rf ./output/*')
     local('python generate.py')
-    local('rsync -avz --no-t --no-p -e ssh ./output/ joseph-long.com:"~/www/"')
+    local('rsync -avz --no-t --no-p -e ssh ./output/ josephoenix@joseph-long.com:"~/www/"')
 
 def deploy():
     prepare()
