@@ -191,3 +191,17 @@ with open(os.path.join(OUTPUT_ROOT, 'index.html'), 'w') as f:
         positions=positions,
         posts=all_posts[:10]
     ))
+
+page_template = env.get_template('page.html')
+for page_path in glob.glob(os.path.join(APP_ROOT, 'pages', '*.html')):
+    page_slug = os.path.basename(page_path).split('.html')[0]
+    page_data = open(page_path, 'r').read().decode('utf8')
+    page_meta, page_head, page_content = page_data.split('---', 3)[1:]
+    page = yaml.load(page_meta.strip())
+    page['content'] = page_content.strip()
+    page['head_content'] = page_head
+    # write page
+    ensure_dir(os.path.join(OUTPUT_ROOT, page_slug))
+    print 'Writing page at', os.path.join(OUTPUT_ROOT, page_slug, 'index.html')
+    with open(os.path.join(OUTPUT_ROOT, page_slug, 'index.html'), 'w') as f:
+        f.write(page_template.render(**page).encode('utf8'))
