@@ -30,7 +30,6 @@ def ensure_dir(path):
 
 markdown_renderer = markdown2.Markdown(extras=[
     'fenced-code-blocks',
-    'markdown-in-html',
     'smarty-pants'
 ])
 
