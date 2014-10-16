@@ -145,6 +145,8 @@ package_app:
 	cp ./main "./build/$(APP_NAME).app/Contents/MacOS/$(APP_NAME)"
 ```
 
+*(n.b. These should be actual tab characters indenting lines in the Makefile, not spaces.)*
+
 The Makefile begins with some variable definitions of the form `FOO=bar`. Including the value of one variable in another is done with the `$(FOO)` construct. (We don't quote variables defined in Makefiles, as the quotes are interpreted literally.) `CFLAGS` is important, since it sets up extra arguments to be passed to the C compiler (like the ones in step 2.2).
 
 The `all` target is special, as it is built (or run) when `make` is invoked without target names. Here we tell it to "build `main`, remove any existing app bundle, and build the app bundle again from scratch".
