@@ -1,7 +1,9 @@
 organization: Space Telescope Science Institute
-title: Research Instrument Analyst
+title: Research & Instrument Analyst
 start: August 2014
 end: present
 datestamp: 2014-08-11
 experience:
-  - TBD
+  - Working with the Telescopes group on simulations and data analysis for the upcoming James Webb Space Telescope
+  - Building new functionality for WebbPSF and POPPY, open source optics simulation packages developed at STScI
+  - Creating a point-spread function simulation tool for the future WFIRST mission
