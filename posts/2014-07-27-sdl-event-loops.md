@@ -16,6 +16,10 @@ So, how do we ask for a window?
 ```c
 #include <SDL2/SDL.h>
 
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+
+
 int main(int argc, char* argv[])
 {
     if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
@@ -76,4 +80,34 @@ Info.plist  Makefile    build       main        main.c
 #
 ```
 
-Did you see that? `ls` ran, then exited as soon as it had listed your files. Programs written in the early days of UNIX were, with few exceptions, 
+Did you see that? `ls` ran, then exited as soon as it had listed your files. Programs written in the early days of UNIX were, with some exceptions, of this kind. They run only long enough to produce some output, then return to your shell.
+
+The expectations are different for GUI programs! They have to wait on you to interact with them through mouse and keyboard events, and they won't quit unless you ask them to. Not only that, they have to ask the operating system for your input events *regularly*, or the OS assumes they've crashed. (Hence the spinning pinwheel of death.)
+
+So, let's add one to our program. An event loop is *very like* an infinite loop. You're not iterating over some data structure, and you're not waiting for any condition within your program like reaching some minimum error on an approximation. You're waiting for the user to be done with you.
+
+Put the following where the call to `SDL_Delay` was, removing the delay:
+
+```c
+    int will_quit = 0; // how we know to break out of our "infinite" loop
+    SDL_Event event; // the event we'll get
+    while (!will_quit) {
+        SDL_PollEvent(&event);
+        if (event.type == SDL_QUIT)
+        {
+            will_quit = 1; // bail next time we test the loop condition
+        }
+    }
+```
+
+If you tried to click the close button on the window previously, you probably noticed that nothing happened. Here, when you build the new and improved code, you can quit the program just by clicking the window's close button. The operating system tells SDL about your click, and SDL passes this on to you for handling as you wish (e.g. ending the event loop, or prompting "Are you sure?").
+
+Run this code and open the Activity Monitor or Task Manager. See anything weird?
+
+Our do-nothing program is using up 100% of the available CPU! That's why tight infinite loops are bad, you know. Let's make it a little more friendly by adding `SDL_Delay(50);` on a new line just before the call to `SDL_PollEvent`. (If we were making a game, we'd want to do something more sophisticated, like measure the time per iteration of the loop and use that to cap the frame rate. But we're not, so let's keep it simple.)
+
+Our program still doesn't do much, but now that we have an event loop in place we have all the "plumbing" necessary to react to the user. We're also well behaved citizens of the user's computer, quitting when asked and not using more CPU than we need.
+
+# Really, how much more preamble could there be?
+
+You'd be surprised. A window is not enough to actually draw things with SDL. (Presumably, you want to draw fancy things, or else you'd be over there in XCode using Interface Builder and playing drag-and-drop.) We also need a renderer, a sort of handle into the SDL drawing machinery.
