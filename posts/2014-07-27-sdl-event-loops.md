@@ -1,6 +1,7 @@
 ---
 title: The SDL Event Loop
 excerpt: "Making an SDL app that actually does something a little more interesting than last time"
+draft: true
 ---
 
 Last time we successfully built and packaged a minimal program that built on SDL. However, it didn't do anything interesting except ensure SDL was able to initialize without errors. It didn't even open a window. How primitive!
