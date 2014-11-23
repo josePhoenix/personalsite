@@ -1,6 +1,7 @@
 ---
 title: Title of Post
 excerpt: "Here is a brief excerpt of the post"
+draft: true
 ---
 
 # Heading level 1
