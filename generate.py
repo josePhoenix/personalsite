@@ -97,6 +97,7 @@ class MathAwareMarkdown(markdown2.Markdown):
                     temp_string = temp_string.replace(match, match_placeholder)
                     self.math_blocks[match_placeholder] = match
                 string_buffer += temp_string
+            string_buffer += '\n'
         return super(MathAwareMarkdown, self).preprocess(string_buffer)
 
     def postprocess(self, text):
