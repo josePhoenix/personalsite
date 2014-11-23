@@ -31,6 +31,10 @@ def ensure_dir(path):
             raise
     return path
 
+class Block(list):
+    def __init__(self, is_code=False):
+        self.is_code = is_code
+
 class MathAwareMarkdown(markdown2.Markdown):
     math_blocks = None
 
@@ -44,28 +48,56 @@ class MathAwareMarkdown(markdown2.Markdown):
             match_placeholder = hashlib.sha1(match).hexdigest()
             text = text.replace(match, match_placeholder)
             self.math_blocks[match_placeholder] = match
-
-        # find single-line math expressions, but make sure we're not inside a
-        # code block before replacing
+        # extract code blocks
         lines = text.split('\n')
-        new_lines = []
-        in_code_block = False
-        for line in lines:
-            if line[:4] == '    ':
-                new_lines.append(line)  # just skip indented code blocks, no state necessary
-                continue
-            if line[:3] == '```':
-                # toggle flag every time we cross a fence
-                in_code_block = not in_code_block
+        new_blocks = []
+        current_block = Block()
 
-            if not in_code_block:
-                matches = re.findall(r'(\$[^\$]+\$)', line)
+        for line in lines:
+            if line[:4] == '    ' and not current_block.is_code:
+                current_block.is_code = False
+                new_blocks.append(current_block)
+                current_block = Block(is_code=True)
+                current_block.append(line)
+                continue
+            elif line[:4] == '    ' and current_block.is_code:
+                current_block.append(line)
+                continue
+            elif line[:3] == '```' and not current_block.is_code:
+                new_blocks.append(current_block)
+                current_block = Block(is_code=True)
+                current_block.append(line)
+                continue
+            elif line[:3] == '```' and current_block.is_code:
+                current_block.append(line)
+                new_blocks.append(current_block)
+                current_block = Block()
+                continue
+            elif len(current_block) > 0 and current_block[-1][:4] == '    ':
+                # we were in an indented code block, but aren't any more
+                # (or else a previous condition would have matched)
+                new_blocks.append(current_block)
+                current_block = Block()
+                continue
+            else:
+                current_block.append(line)
+
+        # handle last block in case it wasn't code or empty
+        new_blocks.append(current_block)
+        # recombine blocks into strings
+        string_buffer = ''
+        for block in new_blocks:
+            if block.is_code:
+                string_buffer += '\n'.join(block)
+            else:
+                temp_string = '\n'.join(block)
+                matches = re.findall(r'(\$[^\$]+\$)', temp_string)
                 for match in matches:
                     match_placeholder = hashlib.sha1(match).hexdigest()
-                    line = line.replace(match, match_placeholder)
+                    temp_string = temp_string.replace(match, match_placeholder)
                     self.math_blocks[match_placeholder] = match
-            new_lines.append(line)
-        return super(MathAwareMarkdown, self).preprocess('\n'.join(new_lines))
+                string_buffer += temp_string
+        return super(MathAwareMarkdown, self).preprocess(string_buffer)
 
     def postprocess(self, text):
         for placeholder, original in self.math_blocks.items():
@@ -77,10 +109,12 @@ class MathAwareMarkdown(markdown2.Markdown):
             text = text.replace(placeholder, mathjax_text)
         return super(MathAwareMarkdown, self).postprocess(text)
 
+
 markdown_renderer = MathAwareMarkdown(extras=[
     'fenced-code-blocks',
     'smarty-pants'
 ])
+
 
 @evalcontextfilter
 def render_markdown2(eval_ctx, value):

@@ -177,8 +177,8 @@ We call `scipy.signal.lombscargle` with three arguments: `x`, `y`, and `freqs`.
 In this case, `x` and `y` are given by the timestamps and measurements from our
 gap-filled signal array. We generate `freqs`, the array of angular frequencies
 over which the periodogram should be evaluated, by picking 10000 periods in the
-range from 0.1 to 10 days and using the relation
-$\text{Angular Frequency} = \frac{2 \pi}{\text{Period}}$.
+range from 0.1 to 10 days and using the relation $\text{Angular Frequency} =
+ \frac{2 \pi}{\text{Period}}$.
 
 
 ```python
