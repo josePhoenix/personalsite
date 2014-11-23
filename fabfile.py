@@ -104,3 +104,4 @@ def notebook(nbfilename):
     # post-process the notebook markdown
     _replace_in_file(nbfilename.replace('.ipynb', '_files') + '/', '', target)
     _markdown_add_code_fences(target)
+    local("rm -r notebooks/{}/ notebooks/{}".format(nbfilename.replace('.ipynb', '_files'), nbfilename.replace('.ipynb', '.md')))
