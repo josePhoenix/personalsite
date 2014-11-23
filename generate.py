@@ -36,7 +36,7 @@ class MathAwareMarkdown(markdown2.Markdown):
 
     def preprocess(self, text):
         self.math_blocks = {}
-        
+
         # find multi-line math first because $$ is more specific and
         # shouldn't appear in code blocks
         matches = re.findall(r'(\$\$[^\$]+\$\$)', text)
@@ -44,7 +44,7 @@ class MathAwareMarkdown(markdown2.Markdown):
             match_placeholder = hashlib.sha1(match).hexdigest()
             text = text.replace(match, match_placeholder)
             self.math_blocks[match_placeholder] = match
-        
+
         # find single-line math expressions, but make sure we're not inside a
         # code block before replacing
         lines = text.split('\n')
@@ -52,7 +52,8 @@ class MathAwareMarkdown(markdown2.Markdown):
         in_code_block = False
         for line in lines:
             if line[:4] == '    ':
-                continue  # just skip indented code blocks, no state necessary
+                new_lines.append(line)  # just skip indented code blocks, no state necessary
+                continue
             if line[:3] == '```':
                 # toggle flag every time we cross a fence
                 in_code_block = not in_code_block
@@ -64,7 +65,7 @@ class MathAwareMarkdown(markdown2.Markdown):
                     line = line.replace(match, match_placeholder)
                     self.math_blocks[match_placeholder] = match
             new_lines.append(line)
-        return '\n'.join(new_lines)
+        return super(MathAwareMarkdown, self).preprocess('\n'.join(new_lines))
 
     def postprocess(self, text):
         for placeholder, original in self.math_blocks.items():
@@ -74,7 +75,7 @@ class MathAwareMarkdown(markdown2.Markdown):
             else:
                 mathjax_text = re.sub(r'\$([^\$]+)\$', r'<script type="math/tex">\1</script>', original)
             text = text.replace(placeholder, mathjax_text)
-        return text
+        return super(MathAwareMarkdown, self).postprocess(text)
 
 markdown_renderer = MathAwareMarkdown(extras=[
     'fenced-code-blocks',
