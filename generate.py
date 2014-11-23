@@ -7,7 +7,10 @@ import yaml
 import datetime
 from pprint import pprint
 import markdown2
-import os, errno
+import os
+import errno
+import re
+import hashlib
 
 # A quick and dirty static site generator (kind of like Jekyll) to generate
 # static HTML for my personal site. Warning: this code is messy and not
@@ -28,17 +31,58 @@ def ensure_dir(path):
             raise
     return path
 
-markdown_renderer = markdown2.Markdown(extras=[
+class MathAwareMarkdown(markdown2.Markdown):
+    math_blocks = None
+
+    def preprocess(self, text):
+        self.math_blocks = {}
+        
+        # find multi-line math first because $$ is more specific and
+        # shouldn't appear in code blocks
+        matches = re.findall(r'(\$\$[^\$]+\$\$)', text)
+        for match in matches:
+            match_placeholder = hashlib.sha1(match).hexdigest()
+            text = text.replace(match, match_placeholder)
+            self.math_blocks[match_placeholder] = match
+        
+        # find single-line math expressions, but make sure we're not inside a
+        # code block before replacing
+        lines = text.split('\n')
+        new_lines = []
+        in_code_block = False
+        for line in lines:
+            if line[:4] == '    ':
+                continue  # just skip indented code blocks, no state necessary
+            if line[:3] == '```':
+                # toggle flag every time we cross a fence
+                in_code_block = not in_code_block
+
+            if not in_code_block:
+                matches = re.findall(r'(\$[^\$]+\$)', line)
+                for match in matches:
+                    match_placeholder = hashlib.sha1(match).hexdigest()
+                    line = line.replace(match, match_placeholder)
+                    self.math_blocks[match_placeholder] = match
+            new_lines.append(line)
+        return '\n'.join(new_lines)
+
+    def postprocess(self, text):
+        for placeholder, original in self.math_blocks.items():
+            if re.match(r'(\$\$[^\$]+\$\$)', original) is not None:
+                # block level equation
+                mathjax_text = re.sub(r'\$([^\$]+)\$', r'<script type="math/tex; mode=display">\1</script>', original)
+            else:
+                mathjax_text = re.sub(r'\$([^\$]+)\$', r'<script type="math/tex">\1</script>', original)
+            text = text.replace(placeholder, mathjax_text)
+        return text
+
+markdown_renderer = MathAwareMarkdown(extras=[
     'fenced-code-blocks',
     'smarty-pants'
 ])
 
 @evalcontextfilter
 def render_markdown2(eval_ctx, value):
-    extensions = [
-        'fenced_code',
-        'codehilite'
-    ]
     if eval_ctx.autoescape:
         return Markup(markdown_renderer.convert(value))
     else:
